@@ -63,4 +63,14 @@ public class TarefaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+        return tarefaRepository.findById(id)
+                .map(tarefa -> {
+                    tarefaRepository.delete(tarefa);
+                    return ResponseEntity.ok().<Void>build();
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }
