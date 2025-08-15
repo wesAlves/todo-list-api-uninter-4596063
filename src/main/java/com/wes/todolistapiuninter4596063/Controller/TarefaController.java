@@ -28,5 +28,10 @@ public class TarefaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @PostMapping
+    public ResponseEntity<Tarefa> createTask(@RequestBody Tarefa tarefa) {
+        Tarefa savedTarefa = tarefaRepository.save(tarefa);
+        return ResponseEntity.ok(savedTarefa);
+    }
 
 }
