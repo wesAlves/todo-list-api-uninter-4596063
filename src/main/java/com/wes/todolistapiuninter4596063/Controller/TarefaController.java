@@ -34,4 +34,33 @@ public class TarefaController {
         return ResponseEntity.ok(savedTarefa);
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Tarefa> updateTask(@PathVariable Long id, @RequestBody Tarefa tarefa) {
+        return tarefaRepository.findById(id)
+                .map(existingTarefa -> {
+                    tarefa.setId(id);
+                    return ResponseEntity.ok(tarefaRepository.save(tarefa));
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Tarefa> partialUpdateTask(@PathVariable Long id, @RequestBody Tarefa tarefa) {
+        return tarefaRepository.findById(id)
+                .map(existingTarefa -> {
+                    if (tarefa.getNome() != null) {
+                        existingTarefa.setNome(tarefa.getNome());
+                    }
+                    if (tarefa.getDataEntrega() != null) {
+                        existingTarefa.setDataEntrega(tarefa.getDataEntrega());
+                    }
+                    if (tarefa.getResponsavel() != null) {
+                        existingTarefa.setResponsavel(tarefa.getResponsavel());
+                    }
+                    return ResponseEntity.ok(tarefaRepository.save(existingTarefa));
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }

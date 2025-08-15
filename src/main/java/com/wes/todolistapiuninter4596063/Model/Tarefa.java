@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name="tarefa")
+@Table(name = "tarefa")
 public class Tarefa {
 
     @Id
@@ -28,6 +28,10 @@ public class Tarefa {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
