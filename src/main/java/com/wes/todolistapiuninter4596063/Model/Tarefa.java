@@ -13,23 +13,21 @@ public class Tarefa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private Date dateEntrega;
+    private Date dataEntrega;
+    private String responsavel;
 
     public Tarefa() {
     }
 
-    public Tarefa(Long id, String nome, Date dateEntrega) {
+    public Tarefa(Long id, String nome, Date dataEntrega, String responsavel) {
         this.id = id;
         this.nome = nome;
-        this.dateEntrega = dateEntrega;
+        this.dataEntrega = dataEntrega;
+        this.responsavel = responsavel;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -40,24 +38,32 @@ public class Tarefa {
         this.nome = nome;
     }
 
-    public Date getDateEntrega() {
-        return dateEntrega;
+    public Date getDataEntrega() {
+        return dataEntrega;
     }
 
-    public void setDateEntrega(Date dateEntrega) {
-        this.dateEntrega = dateEntrega;
+    public void setDataEntrega(Date dataEntrega) {
+        this.dataEntrega = dataEntrega;
+    }
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Tarefa tarefa = (Tarefa) o;
-        return Objects.equals(id, tarefa.id) && Objects.equals(nome, tarefa.nome) && Objects.equals(dateEntrega, tarefa.dateEntrega);
+        return Objects.equals(id, tarefa.id) && Objects.equals(nome, tarefa.nome) && Objects.equals(dataEntrega, tarefa.dataEntrega) && Objects.equals(responsavel, tarefa.responsavel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, dateEntrega);
+        return Objects.hash(id, nome, dataEntrega, responsavel);
     }
 
     @Override
@@ -65,7 +71,10 @@ public class Tarefa {
         return "Tarefa{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", dateEntrega=" + dateEntrega +
+                ", dataEntrega=" + dataEntrega +
+                ", responsavel='" + responsavel + '\'' +
                 '}';
     }
+
+
 }
